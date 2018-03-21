@@ -1,0 +1,8 @@
+{
+  "name": "gameEvent",
+  "app_id": "e3dead8d",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
