@@ -1,30 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform, ToastController } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { MyTeamsPage } from "../pages/my-teams/my-teams";
+import { TournamentsPage } from "../pages/tournaments/tournaments";
+import { ManageShopPage } from "../pages/manage-shop/manage-shop";
+import { AddProductPage } from "../pages/add-product/add-product";
+import { MyShopPage } from "../pages/my-shop/my-shop";
+import { LoginPage } from "../pages/login/login";
+import { AuthServiceProvider } from "../providers/auth-service/auth-service";
+import { AddShopPage } from "../pages/add-shop/add-shop";
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  loading: any;
+  rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string; component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public authService: AuthServiceProvider,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private toastCtrl: ToastController
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
+    this.pages = [{ title: "Home", component: MyTeamsPage }];
   }
 
   initializeApp() {
@@ -40,5 +47,52 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  goToHome() {
+    this.nav.push(MyTeamsPage);
+  }
+  goToTournaments() {
+    this.nav.push(TournamentsPage);
+  }
+  goToManageShop() {
+    this.nav.push(ManageShopPage);
+  }
+  goToAddProduct() {
+    this.nav.push(AddProductPage);
+  }
+  goToShop() {
+    this.nav.push(MyShopPage);
+  }
+  goToAddShop() {
+    this.nav.push(AddShopPage);
+  }
+  logout() {
+    console.log("logout called");
+    this.authService.logout(localStorage.getItem("token")).subscribe(
+      result => {
+        //  this.loading.dismiss();
+        //  let nav = this.app.getRootNav();
+        localStorage.removeItem("token");
+        this.nav.setRoot(LoginPage);
+      },
+      err => {
+        // this.loading.dismiss();
+        this.presentToast(err);
+      }
+    );
+  }
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: "bottom",
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log("Dismissed toast");
+    });
+
+    toast.present();
   }
 }

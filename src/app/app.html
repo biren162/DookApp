@@ -1,15 +1,26 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>insidesLook </ion-title>
+
+      <ion-buttons end>
+        <button>
+          <ion-icon (click)="logout()" menuClose name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+
     </ion-toolbar>
+
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+      <button menuClose ion-item (click)="goToAddShop()">Add Shop</button>
+      <button menuClose ion-item (click)="goToHome()">Home </button>
+      <button menuClose ion-item (click)="goToTournaments()">Tournaments </button>
+      <button menuClose ion-item (click)="goToShop()">My Shop </button>
+      <button menuClose ion-item (click)="goToManageShop()">Manage Shop </button>
+      <button menuClose ion-item (click)="goToAddProduct()">Add Product </button>
     </ion-list>
   </ion-content>
 
