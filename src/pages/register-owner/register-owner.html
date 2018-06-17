@@ -1,0 +1,55 @@
+<ion-content padding>
+  <h2>Please Register</h2>
+ <form (submit)="doRegister()">
+    <ion-item>
+      <ion-input [(ngModel)]="owner.userName" name="userName" type="text" placeholder="Username" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.name_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.name_error}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="owner.fname" name="firstName" type="text" placeholder="First Name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.fname_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.fname_error}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="owner.lname" name="lastName" type="text" placeholder="Last Name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.lname_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.lname_error}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="owner.password" name="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.password_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.password_error}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="owner.verifyPw" name="verifyPw" type="password" placeholder="confirm password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.verify_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.verify_error}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="owner.email" name="email" type="text" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.email_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.email_error}}</ion-label>
+    </ion-item> 
+    <ion-item>
+      <ion-input [(ngModel)]="owner.mo_error" name="mo" type="text" placeholder="Mobile"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMap.name_error != ''">
+      <ion-label color="danger" stacked>{{errorMap.mo_error}}</ion-label>
+    </ion-item>
+    <!--<ion-label>{{errorMessage}}</ion-label>-->
+    <button ion-button block type="submit">
+      Register
+    </button>
+  </form>
+
+  <button ion-button block clear (click)="login()">
+   Already have an account? Login Now
+  </button>
+</ion-content>
