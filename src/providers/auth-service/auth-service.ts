@@ -16,7 +16,7 @@ export class AuthServiceProvider {
   private loginStatus;
   constructor(public http: Http) {
     console.log("Hello AuthServiceProvider Provider");
-    this.apiUrl = "http://10.13.92.255:8080/";
+    this.apiUrl = "http://192.168.0.101:8080/";
   }
   /*login2(credentials) {
     return new Promise((resolve, reject) => {
