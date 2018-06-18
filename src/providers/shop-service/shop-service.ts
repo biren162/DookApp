@@ -27,7 +27,7 @@ export class ShopServiceProvider {
     private transfer: FileTransfer
   ) {
     console.log("Hello ShopServiceProvider Provider");
-    this.apiUrl = "http://192.168.0.101:8080/";
+    this.apiUrl = "http://10.13.10.51:8080/";
   }
   saveImg(imgUri) {
     const fileTransfer: FileTransferObject = this.transfer.create();

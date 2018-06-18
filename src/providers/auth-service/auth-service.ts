@@ -16,7 +16,7 @@ export class AuthServiceProvider {
   private loginStatus;
   constructor(public http: Http) {
     console.log("Hello AuthServiceProvider Provider");
-    this.apiUrl = "http://192.168.0.101:8080/";
+    this.apiUrl = "http://10.13.10.51:8080/";
   }
   /*login2(credentials) {
     return new Promise((resolve, reject) => {
@@ -38,6 +38,7 @@ export class AuthServiceProvider {
     let headers = new Headers({
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
     });
+
     let options = new RequestOptions({
       method: RequestMethod.Post,
       headers: headers
